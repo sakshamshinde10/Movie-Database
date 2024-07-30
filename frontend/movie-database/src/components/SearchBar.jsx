@@ -3,26 +3,24 @@ import React, { useState } from 'react';
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
-  const handleSearch = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onSearch(query);
   };
 
   return (
-    <div className="flex mb-4">
+    <form onSubmit={handleSubmit} className="flex items-center mb-4">
       <input
         type="text"
-        className="border p-2 flex-grow"
-        placeholder="Search for a movie..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search for a movie..."
+        className="border border-gray-300 p-2 rounded-l-lg flex-grow text-black" // Added text-black class
       />
-      <button
-        className="bg-blue-500 text-white p-2 ml-2"
-        onClick={handleSearch}
-      >
+      <button type="submit" className="bg-blue-600 text-white p-2 rounded-r-lg">
         Search
       </button>
-    </div>
+    </form>
   );
 };
 
